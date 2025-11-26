@@ -776,7 +776,7 @@ services:
       - "traefik.http.services.dify-web-service.loadbalancer.server.port=3000"
 
   # The PostgreSQL database.
-  db_postgres:
+  db:
     image: postgres:15-alpine
     profiles:
       - postgresql
