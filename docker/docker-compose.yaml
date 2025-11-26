@@ -778,8 +778,8 @@ services:
   # The PostgreSQL database.
   db_postgres:
     image: postgres:15-alpine
-    profiles:
-      - postgresql
+    #profiles:
+    #  - postgresql
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
