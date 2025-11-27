@@ -665,7 +665,8 @@ services:
       # CORS Middleware
       - "traefik.http.middlewares.dify-cors.headers.accesscontrolalloworiginlist=https://dify.ilova.app,https://dify-api.ilova.app"
       - "traefik.http.middlewares.dify-cors.headers.accesscontrolallowmethods=GET,POST,PUT,DELETE,OPTIONS"
-      - "traefik.http.middlewares.dify-cors.headers.accesscontrolallowheaders=Content-Type,Authorization,X-Requested-With"
+      - "traefik.http.middlewares.dify-cors.headers.accesscontrolallowheaders=*"
+      - "traefik.http.middlewares.dify-cors.headers.accesscontrolallowheaders=Content-Type,Authorization,X-Requested-With,X-CSRF-Token,Accept,Accept-Language"
       - "traefik.http.middlewares.dify-cors.headers.accesscontrolallowcredentials=true"
     networks:
       - ssrf_proxy_network
