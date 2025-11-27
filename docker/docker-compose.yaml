@@ -622,7 +622,6 @@ services:
   api:
     image: langgenius/dify-api:1.10.1
     restart: always
-    user: "1000:1000"
     environment:
       # Use the shared environment variables.
       <<: *shared-api-worker-env
@@ -678,7 +677,6 @@ services:
   worker:
     image: langgenius/dify-api:1.10.1
     restart: always
-    user: "1000:1000"
     environment:
       # Use the shared environment variables.
       <<: *shared-api-worker-env
