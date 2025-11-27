@@ -616,14 +616,13 @@ services:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage
     labels:
-    - "traefik.enable=true"
-    # API handle paths: /api, /console, /v1, /files
-    - "traefik.http.routers.dify-api.rule=Host(`dify.ilova.app`) && (PathPrefix(`/api`) || PathPrefix(`/v1`) || PathPrefix(`/files`)) || PathPrefix(`/console/api`))"
-    - "traefik.http.routers.dify-api.entrypoints=websecure"
-    - "traefik.http.routers.dify-api.tls.certresolver=letsencrypt"
-    - "traefik.http.routers.dify-api.priority=100"
-    - "traefik.http.routers.dify-api.service=dify-api-service"
-    - "traefik.http.services.dify-api-service.loadbalancer.server.port=5001"
+      - "traefik.enable=true"
+      - "traefik.http.routers.dify-api.rule=Host(`dify.ilova.app`) && PathPrefix(`/api/`, `/console/`, `/v1/`, `/files/`)"
+      - "traefik.http.routers.dify-api.entrypoints=websecure"
+      - "traefik.http.routers.dify-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.dify-api.priority=100"
+      - "traefik.http.routers.dify-api.service=dify-api-service"
+      - "traefik.http.services.dify-api-service.loadbalancer.server.port=5001"
     networks:
       - ssrf_proxy_network
       - default
@@ -701,14 +700,13 @@ services:
       ENABLE_WEBSITE_FIRECRAWL: ${ENABLE_WEBSITE_FIRECRAWL:-true}
       ENABLE_WEBSITE_WATERCRAWL: ${ENABLE_WEBSITE_WATERCRAWL:-true}
     labels:
-    - "traefik.enable=true"
-    # Web handle root path
-    - "traefik.http.routers.dify-web.rule=Host(`dify.ilova.app`)"
-    - "traefik.http.routers.dify-web.entrypoints=websecure"
-    - "traefik.http.routers.dify-web.tls.certresolver=letsencrypt"
-    - "traefik.http.routers.dify-web.priority=1"
-    - "traefik.http.routers.dify-web.service=dify-web-service"
-    - "traefik.http.services.dify-web-service.loadbalancer.server.port=3000"
+      - "traefik.enable=true"
+      - "traefik.http.routers.dify-web.rule=Host(`dify.ilova.app`)"
+      - "traefik.http.routers.dify-web.entrypoints=websecure"
+      - "traefik.http.routers.dify-web.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.dify-web.priority=1"
+      - "traefik.http.routers.dify-web.service=dify-web-service"
+      - "traefik.http.services.dify-web-service.loadbalancer.server.port=3000"
     
   # The postgres database.
   db:
